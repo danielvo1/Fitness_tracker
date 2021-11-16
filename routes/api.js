@@ -13,8 +13,9 @@ router.get("/api/workouts", (req, res) => {
 });
 
 //get data for stats page 
-router.get("api/workouts/stats", (req, res) => {
+router.get("/api/workouts/range", (req, res) => {
     Workout.find({})
+    .limit(7)
     .then(dbWorkout => {
         res.json(dbWorkout);
     })
@@ -38,7 +39,7 @@ router.put("/api/workouts/:id", (req, res) => {
 });
 
 //post to create a new workout 
-router.post("/api/workouts/", ({body}, res) => {
+router.post("/api/workouts", ({body}, res) => {
     console.log(body)
     Workout.create(body)
     .then(dbWorkout => {
